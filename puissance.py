@@ -16,13 +16,16 @@ H = 600
 W = 700 #largeur
 m = 6 #nb lignes
 n = 7 #nb colonnes
-joueur1 = True
-grille = []
-fin = False
-global prenom1
+
 l_coup = []
+grille = []
+
+global prenom1
+
 retour = False
 colonne_impossible = False
+fin = False
+joueur1 = True
 
 
 #création liste à deux dimensions
