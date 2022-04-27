@@ -17,15 +17,18 @@ W = 700 #largeur
 m = 6 #nb lignes
 n = 7 #nb colonnes
 
-l_coup = []
 grille = []
+l_coup = []
 
 global prenom1
 
+
+fin = False
 retour = False
 colonne_impossible = False
-fin = False
+charger_partie = False
 joueur1 = True
+partie_finie = False
 
 
 #création liste à deux dimensions
@@ -65,6 +68,19 @@ def affiche_joueur():
     choix_joueur()
     label_joueur.config(text= premier_joueur + " commence à jouer")
 
+def choix_partie():
+    """Demande à l'utilisateur s'il veut charger la partie précédente ou bien en faire une nouvelle
+    et appelle la fonction adéquate en conséquence"""
+    global premier_joueur, deuxieme_joueur
+    choix = input("taper charger ou nouvelle: ")
+    if choix == "charger":
+        charger()
+        premier_joueur, deuxieme_joueur = liste[1], liste[2]
+    if choix == "nouvelle":
+        affiche_joueur()
+
+
+
 #def paramètres():
 #    nb_pions = int(input("Nombre de pions alignés nécessaire pour gagner ?"))
 
@@ -85,8 +101,11 @@ def trouver_ligne(colonne):
 
 def gestion_clic(event):
     """affiche le jeton dans la grille si cela est possible"""
-    global joueur1, fin, ligne, colonne, retour, colonne_impossible, numero_colonne
+    global joueur1, fin, ligne, colonne, retour, colonne_impossible, partie_finie
     if fin == True:
+        return
+    if partie_finie:
+        label_gagnant.config(text="La partie est déjà terminée, commencer une nouvelle partie")
         return
     if 0<event.x<W and 0<event.y<H :
         clic_x = event.x
@@ -185,10 +204,8 @@ def fin_du_jeu():
     if id_joueur == 1:
         label_gagnant.config(text= premier_joueur + " a gagné", font="20")
     elif id_joueur == 2:
-        if premier_joueur == prenom1:
-            label_gagnant.config(text= prenom2 + " a gagné ", font="20")
-        else:
-            label_gagnant.config(text= prenom1 + " a gagné", font="20")
+        label_gagnant.config(text= deuxieme_joueur + " a gagné ", font="20")
+     
 
 
 def fin_du_jeu_nul():
@@ -217,35 +234,53 @@ def retour_1():
 
 def sauvegarde():
     """ Ecrit la grille dans le fichier sauvegarde.txt """
+    global j_c
+    if joueur1:
+        j_c = premier_joueur #joueur qui commence si on charge la partie
+    else:
+        j_c = deuxieme_joueur
     fic = open("sauvegarde.txt", "w")
     for i in range(m):
         fic.write(str(grille[i]) + "\n")
+    fic.write(j_c + "," + premier_joueur + "," + deuxieme_joueur)
+    if fin:
+        fic.write(",True")
     fic.close() 
 
 def charger():
-    """Lit le fichier sauvegarde.txt, récupère la grille et met à jour la grille en conséquence (modifie l'affichage)"""
+    """Lit le fichier sauvegarde.txt, récupère la grille et met à jour l'affichage de la grille)"""
+    global charger_partie, premier_joueur, deuxieme_joueur, liste, grille2, grille, partie_finie
     grille1 = []  # liste qui contient tous les nombres de la grille
     grille2 = []  # liste qui contient les sous listes de nombres
     fic = open("sauvegarde.txt", "r")
+    n_ligne=0
     while True:
          ligne = fic.readline()
+         n_ligne += 1
          if ligne == "":
              break
          for i in ligne:
              if i =="0" or i =="1" or i =="2":
                  grille1.append(int(i))
+         if n_ligne > 6:
+            liste = ligne.split(",")  
+         
     for i in range(m):
          grille2.extend([[grille1[i] for i in range(n)]])
          for j in range(n):
              del grille1[0]
     fic.close()
+    label_joueur.config(text= "À " + liste[0] + " de jouer")
     for i in range(m):
         for j in range(n):
             if grille2[i][j] == 1:  
                 canvas.create_oval(j*100+5, i*100+5, j*100+100-5, i*100+100-5, fill="gold")
             elif grille2[i][j] == 2:
                 canvas.create_oval(j*100+5, i*100+5, j*100+100-5, i*100+100-5, fill="red")
-
+    grille = grille2
+    if len(liste) == 4:
+        if liste[3] == "True":
+            partie_finie = True
 
 
 
@@ -258,7 +293,6 @@ racine = tk.Tk()
 canvas = tk.Canvas(racine, height=H, width=W, bg="blue")
 bouton_retour = tk.Button(racine, command=retour_1, text="retour")
 bouton_sauvegarde = tk.Button(racine, command=sauvegarde, text="sauvegarde")
-bouton_charger = tk.Button(racine, command=charger, text="charger")
 label_joueur = tk.Label(racine, text= " puissance 4 ", padx=20, pady=20, borderwidth=5, font = ("helvetica", "20")) 
 label_gagnant = tk.Label(racine)
 
@@ -267,13 +301,12 @@ racine.grid()
 canvas.grid(rowspan=10)
 bouton_retour.grid(column=1, row=6)
 bouton_sauvegarde.grid(column=1, row=7)
-bouton_charger.grid(column=1, row = 8)
 label_joueur.grid(column=1,row=0)
 label_gagnant.grid(column=1, row=3)
 
 # fonctions
 creation_grille()
-affiche_joueur()
+choix_partie()
 
 
 # gestions clic
