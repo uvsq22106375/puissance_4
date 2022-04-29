@@ -5,7 +5,7 @@ VIGNERON THOMAS
 SOW MAHMOUD
 LIMOUZIN MATTHIEU
 
-![image](https://user-images.githubusercontent.com/91213934/165950152-d559e291-9cda-47a6-bbbf-24541bea1609.png)
+![image](https://user-images.githubusercontent.com/91213934/165950593-1b2da05e-5d17-4437-b56f-9a758fd26db3.png)
 
 
 * Règles du jeu :
