@@ -14,7 +14,7 @@ REGLES DU JEU:
 
 - Ce jeu se joue à deux joueurs et se déroule sur un tableau à 7 colonnes et 6 lignes soit 42 cellules. 
 - A chaque tour, chaque joueur place un jeton dans la colonne de son choix et celui-ci tombe jusqu’à la première case disponible. 
-- Le premier joueur qui réussit à aligner quatre jetons de sa couleur à l’horizontale, verticale ou en diagonale gagne. Si personne n’y arrive, c'est-à-dire que toutes les cases de la grille de jeu sont remplies sans alignement, alors la partie se finit et il y a égalité
+- Le premier joueur qui réussit à aligner quatre jetons de sa couleur à l’horizontale, à la verticale ou en diagonale, gagne. Si personne n’y arrive, c'est-à-dire si toutes les cases de la grille de jeu sont remplies sans alignement, alors la partie se finit et il y a égalité.
 
 COMMENT JOUER:
 
@@ -23,7 +23,7 @@ COMMENT JOUER:
         - demarrer une nouvelle partie: taper "nouvelle" dans l'invite de commande
         - charger une partie: taper "charger" dans l'invite de commande
     - Le programme demande ensuite à l'utilisateur les prénoms des deux joueurs:
-        - taper les deux prénoms dansl'invite de commande
+        - taper les deux prénoms dans l'invite de commande
     - Le programme demande ensuite à l'utilisateur s'il veut faire une partie en une manche gagnante ou plus:
         - une seule manche: taper "oui"
         - plusieurs manches: taper "non"
