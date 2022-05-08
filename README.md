@@ -20,7 +20,7 @@ REGLES DU JEU:
 
 COMMENT JOUER:
 
-- Interaction avec l'utilisateurffffa
+- Interaction avec l'utilisateur
     - Le programme demande à l'utilisateur s'il veut charger une partie déjà existante ou bien en démarrer une nouvelle:
         - demarrer une nouvelle partie: taper "nouvelle" dans l'invite de commande
         - charger une partie: taper "charger" dans l'invite de commande
