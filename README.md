@@ -8,7 +8,7 @@
 #############################################
 
 
-                                              PROJET PUISSANCE 4:
+                                                      PROJET PUISSANCE 4:
 
 
 REGLES DU JEU:
