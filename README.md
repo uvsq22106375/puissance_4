@@ -16,6 +16,7 @@ REGLES DU JEU:
 - A chaque tour, chaque joueur place un jeton dans la colonne de son choix et celui-ci tombe jusqu’à la première case disponible. 
 - Le premier joueur qui réussit à aligner quatre jetons de sa couleur à l’horizontale, à la verticale ou en diagonale, gagne. Si personne n’y arrive, c'est-à-dire si toutes les cases de la grille de jeu sont remplies sans alignement, alors la partie se finit et il y a égalité.
 
+
 COMMENT JOUER:
 
 - Interaction avec l'utilisateur
@@ -35,6 +36,7 @@ COMMENT JOUER:
     - tour à tour, chaque joueur clique sur la grille
     - le pion tombe dans la colonne où le joueur à cliquer et dans la ligne disponible (où il n'y a pas déjà un pion)
 
+
 GESTION DES BOUTONS:
 
 - Sauvegarde d'une partie
@@ -44,7 +46,7 @@ GESTION DES BOUTONS:
         - le premier joueur à avoir jouer
         - le deuxième joueur à avoir jouer
         - si la partie chargée est déjà terminée
-- annuler le coup précédent:
+- Annuler le coup précédent:
     - si le joueur veut annuler son coup (et même ceux d'avant) alors il lui suffit d'appuyer sur le bouton "retour"
 
 
