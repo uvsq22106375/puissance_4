@@ -1,17 +1,19 @@
-Puissance 4
+#############################################
+# groupe MIASHS 7
+# GOREAU THELMA
+# VIGNERON THOMAS
+# SOW MAHMOUD
+# LIMOUZIN MATTHIEU
+# https://github.com/uvsq22106375/puissance_4
+#############################################
 
-GOREAU THELMA
-VIGNERON THOMAS
-SOW MAHMOUD
-LIMOUZIN MATTHIEU
+                               PROJET PUISSANCE 4:
+Les règles du quatre en ligne sont très simples. C’est un jeu à deux joueurs qui se déroule sur un tableau à 7x6 cellules. A chaque tour, chaque joueur place un jeton de sa couleur au-dessus d’une colonne et celui-ci tombe jusqu’à la première case disponible. Le premier joueur qui réussit à placer quatre jetons de la même couleur de suite à l’horizontale, verticale ou en biais gagne. Si personne n’y arrive, la partie se finit en égalité
 
-![image](https://user-images.githubusercontent.com/91213934/165950593-1b2da05e-5d17-4437-b56f-9a758fd26db3.png)
+Règles du jeu : Le vainqueur est le joueur qui réalise le premier un alignement (horizontal, vertical ou diagonal) consécutif d'au moins quatre pions de sa couleur. Si, alors que toutes les cases de la grille de jeu sont remplies, aucun des deux joueurs n'a réalisé un tel alignement, la partie est déclarée nulle.
 
+Comment jouer :
 
-* Règles du jeu :
-Le vainqueur est le joueur qui réalise le premier un alignement (horizontal, vertical ou diagonal) consécutif d'au moins quatre pions de sa couleur. Si, alors que toutes les cases de la grille de jeu sont remplies, aucun des deux joueurs n'a réalisé un tel alignement, la partie est déclarée nulle.
-
-* Comment jouer : 
-- Pour demarrer une nouvelle partie taper "nouvelle" dans l'invite de commande
-- Pour charger une partie taper "charger" dans l'invite de commande
+Pour demarrer une nouvelle partie taper "nouvelle" dans l'invite de commande
+Pour charger une partie taper "charger" dans l'invite de commande
 
