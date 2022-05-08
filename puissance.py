@@ -7,36 +7,39 @@
 # https://github.com/uvsq22106375/puissance_4
 #############################################
 
+
+############################################# 
 # import des modules
 import tkinter as tk
 import random as rd
 
-# variables globales
+
+#############################################
+# constantes
 H = 600  # hauteur
 W = 700  # largeur
 m = 6  # nb lignes
 n = 7  # nb colonnes
-grille = []
-l_coup = []  # coordonnées des clics successifs
-global prenom1
+
+
+#############################################
+#  variables globales
+
+# liste contenant les coordonnées (ligne, colonne) des pions posés
+l_coup = [] 
+# savoir si la partie est finie (4 pions déjà alignés ou grille pleine)
 fin = False
+# savoir si le joueur a cliqué sur retour
 retour = False
-colonne_impossible = False
-charger_partie = False
-joueur1 = True  # permet changement joueur, joueur1 = True
+# permet changement joueur
+joueur1 = True  
+# savoir si partie sauvegardée est terminée
 partie_finie = False
+# savoir si joueur a choisi une seule manche 
 une_manche = True
-fin_manche = False
 
 
-# création liste à deux dimensions
-# 0 : case vide
-# 1 : case avec un pion jaune
-# 2 : case avec un pion rouge
-for i in range(m):
-    grille.append([0]*n)
-
-
+#############################################
 # fonctions
 
 def creation_grille():
@@ -101,9 +104,9 @@ def gestion_clic(event):
     """affiche le jeton dans la grille si cela est possible"""
     global joueur1, fin, ligne, colonne, retour
     global colonne_impossible, partie_finie, nb_parties
-    if fin:   # 4 pions déjà alignés ou grille pleine
+    if fin:   
         return
-    if partie_finie:  # chargement partie déjà terminée
+    if partie_finie: 
         label_gagnant.config(text="La partie est déjà terminée, commencer une nouvelle partie")
         return
     if 0 < event.x < W and 0 < event.y < H:
@@ -115,7 +118,7 @@ def gestion_clic(event):
                                ligne*100+100-5, fill="gold")
             grille[ligne][colonne] = 1
             joueur1 = not joueur1
-            if retour:   # joueur clique sur le bouton retour
+            if retour:  
                 retour = False     
             label_joueur.config(text="À " + deuxieme_joueur + " de jouer")      
         else:
@@ -182,18 +185,7 @@ def alignement(ligne, colonne):
            grille[ligne - cpt][colonne - cpt] == id_joueur):  # haut gauche
         cpt += 1
         if cpt == 4:
-            fin_du_jeu()
-        
-
-def colonne_pleine(colonne):
-    """vérifie si la colonne que le joueur a choisie est pleine ou non"""
-    global colonne_impossible
-    nb_col = 0
-    for i in range(m):
-        if grille[i][colonne] == 1 or grille[i][colonne] == 2:
-            nb_col += 1
-    if nb_col == m:
-        colonne_impossible = True
+            fin_du_jeu()       
 
 
 def grille_pleine():
@@ -237,7 +229,7 @@ def dernier_coup():
     l_coup.extend([ligne, colonne])
 
 
-def retour_1():
+def appui_retour():
     """annule le dernier coup et change le numéro dans la grille"""
     global retour, joueur1
     grille[l_coup[-2]][l_coup[-1]] = 0
@@ -274,7 +266,7 @@ def sauvegarde():
 def charger():
     """Lit le fichier sauvegarde.txt, récupère la grille 
        et met à jour l'affichage de la grille)"""
-    global charger_partie, premier_joueur, deuxieme_joueur
+    global premier_joueur, deuxieme_joueur
     global liste, grille2, grille, partie_finie
     grille1 = []  # liste qui contient tous les nombres de la grille
     grille2 = []  # liste qui contient les sous listes de nombres
@@ -290,7 +282,7 @@ def charger():
                 grille1.append(int(i))
         if n_ligne > 6:
             liste = ligne.split(",")   
-            # liste contient joueur qui commence, 1er et 2eme joueur\
+            # liste contient joueur qui commence, 1er et 2eme joueur
             # True si partie déjà finie
 
     for i in range(m):
@@ -323,11 +315,11 @@ def set_match():
         nb_manches = input("Taper le nombre de manches: ")
         score1, score2 = 0, 0
         label_score1 = tk.Label(racine, text="score de " + premier_joueur +
-                                ":" + str(score1), font="20")
+                                ": " + str(score1), font="20")
         label_score2 = tk.Label(racine, text="score de " + deuxieme_joueur +
-                                ":" + str(score2), font="20")
+                                ": " + str(score2), font="20")
         label_manches = tk.Label(racine, text="nombre de manches: " +
-                                 nb_manches)
+                                 nb_manches, font="20")
         label_score1.grid(column=1, row=4)
         label_score2.grid(column=1, row=5) 
         label_manches.grid(column=1, row=3)
@@ -379,10 +371,19 @@ def change_premier_joueur():
 ######################
 
 
+# création liste à deux dimensions
+# 0 : case vide
+# 1 : case avec un pion jaune
+# 2 : case avec un pion rouge
+grille = []
+for i in range(m):
+    grille.append([0]*n)
+
+
 # création des widgets
 racine = tk.Tk()
 canvas = tk.Canvas(racine, height=H, width=W, bg="blue")
-bouton_retour = tk.Button(racine, command=retour_1, text="retour")
+bouton_retour = tk.Button(racine, command=appui_retour, text="retour")
 bouton_sauvegarde = tk.Button(racine, command=sauvegarde, text="sauvegarde")
 label_joueur = tk.Label(racine, text=" puissance 4 ", padx=20, pady=20,
                         borderwidth=5, font=("helvetica", "20")) 
