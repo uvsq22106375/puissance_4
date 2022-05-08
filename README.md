@@ -10,11 +10,13 @@
 
                                         PROJET PUISSANCE 4:
 
+
 REGLES DU JEU:
 
 - Ce jeu se joue à deux joueurs et se déroule sur un tableau à 7 colonnes et 6 lignes soit 42 cellules. 
 - A chaque tour, chaque joueur place un jeton dans la colonne de son choix et celui-ci tombe jusqu’à la première case disponible. 
 - Le premier joueur qui réussit à aligner quatre jetons de sa couleur à l’horizontale, à la verticale ou en diagonale, gagne. Si personne n’y arrive, c'est-à-dire si toutes les cases de la grille de jeu sont remplies sans alignement, alors la partie se finit et il y a égalité.
+
 
 COMMENT JOUER:
 
@@ -34,6 +36,7 @@ COMMENT JOUER:
 - Jeu sur la grille
     - tour à tour, chaque joueur clique sur la grille
     - le pion tombe dans la colonne où le joueur à cliquer et dans la ligne disponible (où il n'y a pas déjà un pion)
+
 
 GESTION DES BOUTONS:
 
