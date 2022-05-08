@@ -47,7 +47,7 @@ GESTION DES BOUTONS:
         - le premier joueur à avoir jouer
         - le deuxième joueur à avoir jouer
         - si la partie chargée est déjà terminée
-- annuler le coup précédent:
+- Annuler le coup précédent:
     - si le joueur veut annuler son coup (et même ceux d'avant) alors il lui suffit d'appuyer sur le bouton "retour"
 
 
