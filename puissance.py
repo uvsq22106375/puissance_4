@@ -1,5 +1,5 @@
 #############################################
-# groupe MIASHS 7
+# groupe 7 MIASHS TD1
 # GOREAU THELMA
 # VIGNERON THOMAS
 # SOW MAHMOUD
