@@ -103,7 +103,7 @@ def trouver_ligne(colonne):
 def gestion_clic(event):
     """affiche le jeton dans la grille si cela est possible"""
     global joueur1, fin, ligne, colonne, retour
-    global colonne_impossible, partie_finie, nb_parties
+    global partie_finie, nb_parties
     if fin:   
         return
     if partie_finie: 
@@ -135,7 +135,7 @@ def gestion_clic(event):
 
 
 def alignement(ligne, colonne):
-    """détecte alignement de 4 pions à partir du dernier pion posé"""
+    """détecte l'alignement de 4 pions à partir du dernier pion posé"""
     global id_joueur
     id_joueur = grille[ligne][colonne]
 
@@ -189,8 +189,8 @@ def alignement(ligne, colonne):
 
 
 def grille_pleine():
-    global nb_pions
     """vérifie si la grille est pleine ou non"""
+    global nb_pions
     nb_pions = 0
     for i in range(m):
         for j in range(n): 
@@ -201,7 +201,7 @@ def grille_pleine():
 
 
 def fin_du_jeu():
-    """affiche quel joueur à gagner et arrête le jeu """
+    """affiche quel joueur à gagner et arrête le jeu"""
     global fin, une_manche
     if une_manche == False:
         fin = False
@@ -225,7 +225,7 @@ def fin_du_jeu_nul():
 
 
 def dernier_coup():
-    """rajoute dans une liste les coordonnées du dernier coup """
+    """rajoute dans une liste les coordonnées du dernier pion posé"""
     l_coup.extend([ligne, colonne])
 
 
@@ -246,9 +246,9 @@ def appui_retour():
 
 
 def sauvegarde():
-    """ Ecrit dans le fichier sauvegarde.txt: la grille, le joueur qui doit jouer 
-        quand on charge la partie le prénom des deux joueurs et True si 
-        le jeu est terminé """ 
+    """Ecrit dans le fichier sauvegarde.txt: la grille, le joueur qui doit jouer 
+       quand on charge la partie, le prénom des deux joueurs et True si 
+       le jeu est terminé""" 
     global joueur_commence
     if joueur1:
         # joueur qui commence si on charge la partie
@@ -266,7 +266,7 @@ def sauvegarde():
 
 def charger():
     """Lit le fichier sauvegarde.txt, récupère la grille 
-       et met à jour l'affichage de la grille)"""
+       et met à jour l'affichage de la grille"""
     global premier_joueur, deuxieme_joueur
     global liste, grille2, grille, partie_finie
     grille1 = []  # liste qui contient tous les nombres de la grille
@@ -329,7 +329,9 @@ def set_match():
 
 
 def score():
-    """gère l'affichage des scores et renouvelle grille"""
+    """gère l'affichage des scores,renouvelle la grille
+       et arrête le jeu si le score d'un joueur correspond 
+       au nombre de manches nécessaires pour gagner"""
     global grille, une_manche, nb_manches, score1, score2
     global nb_parties, premier_joueur, deuxieme_joueur, joueur1
     nb_parties += 1
@@ -360,7 +362,7 @@ def score():
 
 
 def change_premier_joueur():
-    """change le premier joueur qui joue à chaque manche gagnée"""
+    """change le premier joueur qui joue à chaque fin de manche"""
     if nb_parties % 2 == 0:
         label_joueur.config(text=premier_joueur + " commence à jouer")
     else:
