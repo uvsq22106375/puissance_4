@@ -233,8 +233,8 @@ def appui_retour():
     """annule le dernier coup et change le numéro dans la grille"""
     global retour, joueur1
     grille[l_coup[-2]][l_coup[-1]] = 0
-    canvas.create_oval(l_coup[-1]*100+5, l_coup[-2]*100+5,
-                       l_coup[-1]*100+100-5, l_coup[-2]*100+100-5, fill="white")
+    canvas.create_oval(l_coup[-1]*100+5, l_coup[-2]*100+5, l_coup[-1]*100+100-5, 
+                       l_coup[-2]*100+100-5, fill="white")
     joueur1 = not joueur1
     if joueur1:
         label_joueur.config(text="À " + premier_joueur + " de jouer") 
@@ -251,7 +251,8 @@ def sauvegarde():
         le jeu est terminé """ 
     global joueur_commence
     if joueur1:
-        joueur_commence = premier_joueur  # joueur qui commence si on charge la partie
+        # joueur qui commence si on charge la partie
+        joueur_commence = premier_joueur  
     else:
         joueur_commence = deuxieme_joueur
     fic = open("sauvegarde.txt", "w")
