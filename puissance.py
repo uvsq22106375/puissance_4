@@ -29,8 +29,6 @@ n = 7  # nb colonnes
 l_coup = [] 
 # savoir si la partie est finie (4 pions déjà alignés ou grille pleine)
 fin = False
-# savoir si le joueur a cliqué sur retour
-retour = False
 # permet changement joueur
 joueur1 = True  
 # savoir si partie sauvegardée est terminée
@@ -118,16 +116,12 @@ def gestion_clic(event):
                                ligne*100+100-5, fill="gold")
             grille[ligne][colonne] = 1
             joueur1 = not joueur1
-            if retour:  
-                retour = False     
             label_joueur.config(text="À " + deuxieme_joueur + " de jouer")      
         else:
             canvas.create_oval(colonne*100+5, ligne*100+5,
                                colonne*100+100-5, ligne*100+100-5, fill="red")
             grille[ligne][colonne] = 2
             joueur1 = not joueur1
-            if retour:
-                retour = False
             label_joueur.config(text="À " + premier_joueur + " de jouer") 
     alignement(ligne, colonne)
     dernier_coup()
@@ -231,7 +225,7 @@ def dernier_coup():
 
 def appui_retour():
     """annule le dernier coup et change le numéro dans la grille"""
-    global retour, joueur1
+    global joueur1
     grille[l_coup[-2]][l_coup[-1]] = 0
     canvas.create_oval(l_coup[-1]*100+5, l_coup[-2]*100+5, l_coup[-1]*100+100-5, 
                        l_coup[-2]*100+100-5, fill="white")
@@ -242,14 +236,12 @@ def appui_retour():
         label_joueur.config(text="À " + deuxieme_joueur + " de jouer") 
     del l_coup[-1]
     del l_coup[-1]
-    retour = True
-
+    
 
 def sauvegarde():
     """Ecrit dans le fichier sauvegarde.txt: la grille, le joueur qui doit jouer 
        quand on charge la partie, le prénom des deux joueurs et True si 
        le jeu est terminé""" 
-    global joueur_commence
     if joueur1:
         # joueur qui commence si on charge la partie
         joueur_commence = premier_joueur  
@@ -285,12 +277,12 @@ def charger():
             liste = ligne.split(",")   
             # liste contient joueur qui commence, 1er et 2eme joueur
             # True si partie déjà finie
-
     for i in range(m):
-        grille2.extend([[grille1[i] for i in range(n)]])
-        for j in range(n):
+        grille2.extend([[grille1[j] for j in range(n)]])
+        for k in range(n):
             del grille1[0]
     fic.close()
+
     label_joueur.config(text="À " + liste[0] + " de jouer")
     for i in range(m):
         for j in range(n):
@@ -338,34 +330,34 @@ def score():
     label_manches.config(text="nombre de manches: " + str(nb_manches))
     if id_joueur == 1:
         score1 += 1
-        label_score1.config(text="score de " + premier_joueur + ":" +
+        label_score1.config(text="score de " + premier_joueur + ": " +
                             str(score1))
         if score1 == int(nb_manches):
             une_manche = True
             fin_du_jeu()
     elif id_joueur == 2:
         score2 += 1
-        label_score2.config(text="score de " + deuxieme_joueur + ":" +
+        label_score2.config(text="score de " + deuxieme_joueur + ": " +
                             str(score2))
         if score2 == int(nb_manches):
             une_manche = True
             fin_du_jeu()
+
     grille = []
     for i in range(m):
         grille.append([0]*n)
-    if nb_parties % 2 == 0:
-        joueur1 = True
-    else:
-        joueur1 = False
     creation_grille()
     change_premier_joueur()
 
 
 def change_premier_joueur():
     """change le premier joueur qui joue à chaque fin de manche"""
+    global joueur1
     if nb_parties % 2 == 0:
+        joueur1 = True
         label_joueur.config(text=premier_joueur + " commence à jouer")
     else:
+        joueur1 = False
         label_joueur.config(text=deuxieme_joueur + " commence à jouer")
 
 
